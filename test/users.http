@@ -1,12 +1,9 @@
 @URL=http://localhost:3000/users
 
-### Obter todos
-GET {{URL}}
-
 ### Obter pelo ID
 GET {{URL}}
 
-### 
+### Inserir Usuario
 POST {{URL}}
 Content-Type: application/json
 
@@ -17,9 +14,8 @@ Content-Type: application/json
     "phone": "123123123"
 }
 
-### 
+### Alterar Usuario
 PUT {{URL}}
-
 Content-Type: application/json
 
 {
@@ -29,5 +25,13 @@ Content-Type: application/json
     "phone": "123123123"
 }
 
-### 
+### Deletar Usuario
 DELETE {{URL}}
+Content-Type: application/json
+
+{
+    "name": "Thiago Dal Santo",
+    "email": "thiago@thiago.com",
+    "password": "123456",
+    "phone": "123123123"
+}
