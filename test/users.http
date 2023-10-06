@@ -1,0 +1,33 @@
+@URL=http://localhost:3000/users
+
+### Obter todos
+GET {{URL}}
+
+### Obter pelo ID
+GET {{URL}}
+
+### 
+POST {{URL}}
+Content-Type: application/json
+
+{
+    "name": "Thiago Dal Santo",
+    "email": "thiago@thiago.com",
+    "password": "123456",
+    "phone": "123123123"
+}
+
+### 
+PUT {{URL}}
+
+Content-Type: application/json
+
+{
+    "name": "Thiago Dal Santo",
+    "email": "thiago@thiago.com",
+    "password": "123456",
+    "phone": "123123123"
+}
+
+### 
+DELETE {{URL}}
