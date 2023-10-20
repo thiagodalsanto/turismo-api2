@@ -12,7 +12,7 @@ router.get("/:id", async (req, res) => {
   try {
     new mongoose.Types.ObjectId(id);
   } catch (err) {
-    return res.status(400).json({ message: "Tu é mt burro menó!" });
+    return res.status(400).json({ message: "Formato de ID incorreto!" });
   }
 
   const user = await User.findById(id);
@@ -47,14 +47,16 @@ router.put("/:id", async (req, res) => {
 
   user.updatedAt = Date.now();
   
-  try {
-    new mongoose.Types.ObjectId(id);
-    await User.findByIdAndUpdate(id, user);
+  new mongoose.Types.ObjectId(id).catch(()=> {
+    return res.status(400).json({message: "Formato de ID incorreto!"})
+    });
 
-    return res.json(user);
-  } catch (err) {
-    return res.status(400).json({ message: "Tu é mt burro menó!" });
-  }  
+  await User.findByIdAndUpdate(id, user).catch(()=>{ 
+    return res.status(404).json({message: "Usuário não encontrado"})
+    });
+
+  return res.json(user);
+  
 });
 
 /**
@@ -63,17 +65,17 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
 
-  try {
-    new mongoose.Types.ObjectId(id);
-  } catch (err) {
-    return res.status(400).json({ message: "Tu é mt burro menó!" });
-  }
+  new mongoose.Types.ObjectId(id).catch(()=> {
+    return res.status(400).json({message: "Formato de ID incorreto!"})
+    });
 
-  const user = await User.findByIdAndDelete(id);
+  const user = await User.findByIdAndDelete(id).catch(()=>{ 
+    return res.status(404).json({message: "Usuário não encontrado"})
+    });;
 
   return user
     ? res.json(user)
     : res.status(404).json({ mesage: "ID Inexistente" });
 });
 
-module.exports = router;
+// module.exports = router;
