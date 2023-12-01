@@ -4,9 +4,9 @@ const Feedback = require("../models/Feedback");
 const { default: mongoose } = require('mongoose');
 
 const prefix = '/api-node';
-router.use(prefix);
+// router.use(prefix);
 
-router.get("/:id", async (req, res) => {
+router.get("${prefix}/:id", async (req, res) => {
     const { id } = req.params;
   
     try {
@@ -25,7 +25,7 @@ router.get("/:id", async (req, res) => {
   /**
    * Obter as avaliações da API por userId
    */
-  router.get("/:userId", async (req, res) => {
+  router.get("${prefix}/:userId", async (req, res) => {
     const { userId } = req.params;
   
     try {
@@ -43,14 +43,14 @@ router.get("/:id", async (req, res) => {
   /**
    * Obter todos as avaliações da API
    */
-  router.get('/', async (request, response) => {
+  router.get('${prefix}/', async (request, response) => {
     return response.json( await Feedback.find() );
   });
   
   /**
    * Cadastrar uma avaliação na collection
    */
-  router.post("/", async (req, res) => {
+  router.post("${prefix}/", async (req, res) => {
     const feedback = req.body;
     const bodyTourId = req.body.tourId; 
     if(await Feedback.findOne({tourId : bodyTourId})){
@@ -83,7 +83,7 @@ router.get("/:id", async (req, res) => {
   /**
    * Deletar uma avaliação na collection
    */
-  router.delete("/:id", async (req, res) => {
+  router.delete("${prefix}/:id", async (req, res) => {
     const { id } = req.params;
   
     try {
