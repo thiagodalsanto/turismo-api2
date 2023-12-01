@@ -3,6 +3,9 @@ var router = express.Router();
 const Feedback = require("../models/Feedback");
 const { default: mongoose } = require('mongoose');
 
+const prefix = '/api-node';
+router.use(prefix);
+
 router.get("/:id", async (req, res) => {
     const { id } = req.params;
   
