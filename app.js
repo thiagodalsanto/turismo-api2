@@ -24,15 +24,15 @@ var indexRouter = require('./routes/index');
 var feedbackRouter = require('./routes/feedback');
 
 var app = express();
-
+const prefix = '/api-node'
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/feedback', feedbackRouter);
+app.use(prefix+'/', indexRouter);
+app.use(prefix+'/feedback', feedbackRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
