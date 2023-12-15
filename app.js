@@ -5,6 +5,7 @@ const path = require('path');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 require('dotenv').config();
+const cors = require("cors");
 
 const MONGO_URL = process.env.MONGO_URL;
 
@@ -24,6 +25,8 @@ var indexRouter = require('./routes/index');
 var feedbackRouter = require('./routes/feedback');
 
 var app = express();
+
+app.use(cors());
 const prefix = '/api-node'
 
 app.use(logger('dev'));
