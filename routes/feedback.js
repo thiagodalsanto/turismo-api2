@@ -8,11 +8,11 @@ const { default: mongoose } = require('mongoose');
 router.get("/:id", async (req, res) => {
     const { id } = req.params;
   
-    try {
-      new mongoose.Types.ObjectId(id);
-    } catch (err) {
-      return res.status(400).json({ message: "Formato de ID incorreto!" });
-    }
+    // try {
+    //   new mongoose.Types.ObjectId(id);
+    // } catch (err) {
+    //   return res.status(400).json({ message: "Formato de ID incorreto!" });
+    // }
   
     const feedback = await Feedback.findById(id);
   
@@ -27,11 +27,11 @@ router.get("/:id", async (req, res) => {
   router.get("/:userId", async (req, res) => {
     const { userId } = req.params;
   
-    try {
-      new mongoose.Types.ObjectId(userId);
-    } catch (err) {
-      return res.status(400).json({ message: "Formato de ID incorreto!" });
-    }
+    // try {
+    //   new mongoose.Types.ObjectId(userId);
+    // } catch (err) {
+    //   return res.status(400).json({ message: "Formato de ID incorreto!" });
+    // }
   
     const feedbacks = await Feedback.find({ userId });
     
@@ -85,11 +85,11 @@ router.get("/:id", async (req, res) => {
   router.delete("/:id", async (req, res) => {
     const { id } = req.params;
   
-    try {
-      const objectId = new mongoose.Types.ObjectId(id);
-    } catch (error) {
-      return res.status(400).json({ message: "Formato de ID incorreto!" });
-    }
+    // try {
+    //   const objectId = new mongoose.Types.ObjectId(id);
+    // } catch (error) {
+    //   return res.status(400).json({ message: "Formato de ID incorreto!" });
+    // }
     
   
     try {
